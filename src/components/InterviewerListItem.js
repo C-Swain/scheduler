@@ -23,5 +23,5 @@ let imageStyle =classNames("interviewers__item-image", {
     alt={props.name}
   />
   {props.selected && props.name}</li>
-  )
+  );
 }
