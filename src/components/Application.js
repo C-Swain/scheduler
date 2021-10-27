@@ -2,6 +2,7 @@ import React, {useState} from "react";
 
 import "components/Application.scss";
 import DayList from "./DayList";
+import { InterviewerListItem } from "./InterviewerListItem";
 
 
 const days = [
@@ -22,10 +23,16 @@ const days = [
   },
 ];
 
+const interviewer = {
+  id: 1,
+  name: "Sylvia Palmer",
+  avatar: "https://i.imgur.com/LpaY82x.png"
+};
 
 
 export default function Application(props) {
   const [day, setDay] = useState("Monday");
+  console.log(day)
   return (
     <main className="layout">
       <section className="sidebar">
