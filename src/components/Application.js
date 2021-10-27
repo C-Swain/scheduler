@@ -2,7 +2,7 @@ import React, {useState} from "react";
 
 import "components/Application.scss";
 import DayList from "./DayList";
-import { InterviewerListItem } from "./InterviewerListItem";
+import InterviewerList from "./InterviewList";
 
 
 const days = [
@@ -37,6 +37,7 @@ const interviewers = [
   { id: 4, name: "Cohana Roy", avatar: "https://i.imgur.com/FK8V841.jpg" },
   { id: 5, name: "Sven Jones", avatar: "https://i.imgur.com/twYrpay.jpg" }
 ];
+const [interviewer, setInterviewer] = useState('Mildred Nazir')
 
 
 export default function Application(props) {
@@ -54,6 +55,7 @@ export default function Application(props) {
 <nav className="sidebar__menu">
   <DayList days={days} day={day} setDay={setDay}/>
   </nav>
+  <InterviewerList selected= {interviewer.id === props.interviewer}/>
 <img
   className="sidebar__lhl sidebar--centered"
   src="images/lhl.png"

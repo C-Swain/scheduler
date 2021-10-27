@@ -16,7 +16,7 @@ let imageStyle =classNames("interviewers__item-image", {
   return (
 
   <li className={interviewerStyles}
-  onClick={() => props.setInterviewer(props.name)}>
+  onClick={props.setInterviewer}>
   <img
     className={imageStyle}
     src={props.avatar}
