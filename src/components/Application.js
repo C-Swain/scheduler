@@ -45,9 +45,8 @@ export default function Application(props) {
 />
       </section>
       <section className="schedule">
-      
-/>
-      
+    
+    
       </section>
     </main>
   );
