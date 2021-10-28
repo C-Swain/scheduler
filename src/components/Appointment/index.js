@@ -1,15 +1,26 @@
 import React from "react";
 import "components/Appointment/styles.scss"
+import { Fragment } from "react";
+import Header from "components/Appointment/Header";
+import Empty from "components/Appointment/Empty";
+import Show from "components/Appointment/Show";
+
+
 
 export default function Appointment(props) {
-  const showText = () => {
-    if (props.time) {
-      return `Appointment is at ${props.time}`
-    } else {
-      return "No Appointments"
-    }
-  }
 
-  return  <article className="appointment"> {showText()}</article>
+  return (
+    <article className="appointment">
+      <Header time={props.time}/>
+      {props.interview
+      ?<Show
+    student={props.interview.student}
+    //this is really long i need to shorten it
+    interviewer={props.interview.interviewer.name}
+    />
+    //is this the right way to put empty?
+    :<Empty/>}
+  </article>
+   );
   
 }
