@@ -2,9 +2,14 @@ import React from "react";
 import "components/Appointment/styles.scss"
 
 export default function Appointment(props) {
-const time = props.time;
-  return ( 
+  const showText = () => {
+    if (props.time) {
+      return `Appointment is at ${props.time}`
+    } else {
+      return "No Appointments"
+    }
+  }
 
-  <article className="appointment">Appointment at {time}</article>
-  )
+  return  <article className="appointment"> {showText()}</article>
+  
 }
