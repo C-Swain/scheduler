@@ -1,28 +1,28 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 
 import "components/Application.scss";
 import DayList from "./DayList";
 import InterviewerList from "./InterviewerList";
 import Appointment from "components/Appointment";
+import axios from "axios";
+import { AxiosProxyConfig } from "axios";
 
 
-const days = [
-  {
-    id: 1,
-    name: "Monday",
-    spots: 2,
-  },
-  {
-    id: 2,
-    name: "Tuesday",
-    spots: 5,
-  },
-  {
-    id: 3,
-    name: "Wednesday",
-    spots: 0,
-  },
-];
+
+const [days, setDays] = useState([days]);
+useEffect(() => {
+axios
+  .get("/api/days")
+  .then((response) => {
+    console.log(response.data.results);
+  })
+  .catch((error) => {
+    console.log(error.response.status);
+    console.log(error.response.headers);
+    console.log(error.response.data);
+  });
+
+},[days])
 
 const interviewer = {
   id: 1,
