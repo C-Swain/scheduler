@@ -8,6 +8,9 @@ import Show from "components/Appointment/Show";
 
 
 export default function Appointment(props) {
+  const EMPTY = "EMPTY";
+  const SHOW = "SHOW";
+  
 
   return (
     <article className="appointment">
