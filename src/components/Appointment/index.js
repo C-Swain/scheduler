@@ -4,6 +4,7 @@ import { Fragment } from "react";
 import Header from "components/Appointment/Header";
 import Empty from "components/Appointment/Empty";
 import Show from "components/Appointment/Show";
+import Confirm from "./Confirm";
 import Status from "./Status";
 import useVisualMode from "hooks/useVisualMode";
 import Form from "./Form";
@@ -14,9 +15,9 @@ export default function Appointment(props) {
   const CREATE = "CREATE";
   const SAVING = "SAVING";
   const DELETING ="DELETING"
+  const EDIT = "EDITING";
+  const CONFIRM = "CONFIRM";
   
-
-
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
@@ -47,29 +48,44 @@ export default function Appointment(props) {
           id={props.id}
           student={props.interview.student}
           interviewer={props.interview.interviewer}
-          cancelInterview={deleteAppointment}
+          cancelInterview={() => transition(CONFIRM)}
+          onEdit={() => transition(EDIT)}
         />
       )}
       {mode === CREATE && (
         <Form
-          name={props.name}
-          value={props.value}
+  
           interviewers={props.interviewers}
           onCancel={back}
           onSave={save}
         />
+      )}
         {mode === EDIT && (
           <Form
-          name={props.name}
-          value={props.value}
+          student={props.interview.student}
+          interviewer={props.interview.interviewer.id}
           interviewers={props.interviewers}
           onCancel={back}
           onSave={save}
+    
+        /> 
+        )}
+           {mode === CONFIRM && (
+          <Confirm
+          onCancel={back}
+          onConfirm={deleteAppointment}
+          message="Are you sure you would like Delete?"
+
         /> 
         )}
       {mode === DELETING && (
         <Status 
           message="Deleting"
+        />
+      )}
+      {mode === SAVING && (
+        <Status
+        message="SAVING"
         />
       )}
     </article>

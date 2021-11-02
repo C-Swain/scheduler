@@ -3,8 +3,10 @@ import React, { useState } from "react";
 import Button from "components/Button";
 
 export default function Form(props) {
-  const [currentName, setName] = useState(props.name || "");
-  const [currentInterviewer, setInterviewer] = useState(props.value || null);
+
+  const [currentName, setName] = useState(props.student || "");
+  //figured out that i need the id for the interviewer to come preselected
+  const [currentInterviewer, setInterviewer] = useState(props.interviewer || null);
 
   //we need a function to clear all the fields
   const reset = () => {
@@ -16,14 +18,13 @@ export default function Form(props) {
     props.onCancel();
   }
 
-
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
         <form autoComplete="off">
           <input 
             className="appointment__create-input text--semi-bold"
-            name={props.name}
+            name="Name"
             type="text"
             placeholder="Enter Student Name"
             onChange={(event) => setName(event.target.value)}
