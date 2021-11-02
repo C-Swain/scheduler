@@ -33,7 +33,7 @@ Promise.all([days, appointments, interviewers]).then(results => {
 });
 }, []);
 
-// adding function to book interview 
+// function to book appointment 
  function bookInterview(id, interview) {
   console.log(id, interview);
   
@@ -58,8 +58,13 @@ Promise.all([days, appointments, interviewers]).then(results => {
   })
 
 }
+// to delete an appointment
+const cancelInterview = (id) => {
+  return axios.delete(`/api/appointments/${id}`).then(res => { 
+    console.log(res);
+  });
 
-
+};
 
 const appointments = getAppointmentsForDay(state, state.day);
 const interviewers = getInterviewersForDay(state, state.day);
@@ -76,6 +81,7 @@ const interview = getInterview(state, appointment.interview);
       interview={interview}
       interviewers={interviewers}
       bookInterview={bookInterview}
+      cancelInterview={cancelInterview}
     />
   );
 });
