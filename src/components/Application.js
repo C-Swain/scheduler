@@ -6,66 +6,15 @@ import InterviewerList from "./InterviewerList";
 import Appointment from "components/Appointment";
 import { getAppointmentsForDay, getInterview ,getInterviewersForDay} from "helpers/selectors";
 import useVisualMode from "hooks/useVisualMode"
-
+import useApplicationData from "hooks/useApplicationData";
 export default function Application(props) {
+  const {
+    state,
+    setDay,
+    bookInterview,
+    cancelInterview
+  } = useApplicationData();
   
-  const [state, setState] = useState({
-    day: "Monday",
-    days: [],
-    appointments: [],
-    interviewers: []
-  });
-
-const setDay = day => setState(prev => ({ ...prev, day}));
-useEffect(() => {
-  let days = axios.get('/api/days');
-  let appointments = axios.get('/api/appointments');
-  let interviewers = axios.get('/api/interviewers');
-  
-
-Promise.all([days, appointments, interviewers]).then(results => {
-  days = results[0].data;
-  appointments = results[1].data;
-  interviewers = results[2].data;
-  
-  //needs to be an array ?
-  setState(prev => ({ ...prev, days, appointments, interviewers }));
-});
-}, []);
-
-// function to book appointment 
- function bookInterview(id, interview) {
-  console.log(id, interview);
-  
-  const appointment = {
-    ...state.appointments[id],
-    interview: { ...interview }
-  };
-
-  const appointments = {
-    ...state.appointments,
-    [id]: appointment
-  };
-
-  return axios
-  .put(`/api/appointments/${id}`, {interview})
-  
-  .then(() => {
-  
-  setState(prev => ({...prev, appointments}
-    ));
-  
-  })
-
-}
-// to delete an appointment
-const cancelInterview = (id) => {
-  return axios.delete(`/api/appointments/${id}`).then(res => { 
-    console.log(res);
-  });
-
-};
-
 const appointments = getAppointmentsForDay(state, state.day);
 const interviewers = getInterviewersForDay(state, state.day);
 
