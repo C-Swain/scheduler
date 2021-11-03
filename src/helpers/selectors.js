@@ -15,7 +15,7 @@ export function getAppointmentsForDay(state, day) {
  //next we compare the appointment Id and push detials to the result 
    for(const id of onDay.appointments) {
      const appointmentObj = state.appointments[id];
-    //  console.log(appointmentObj)
+   
      result.push(appointmentObj);
    }
    return result
@@ -43,13 +43,13 @@ let onDay = state.days.filter(d => d.name === day)[0];
 if(!onDay) {
  return [];
 }
-console.log(onDay.interviewers)
+
 const interviewerID = onDay.interviewers;
 for(const id of interviewerID){
   let interviewer = state.interviewers[id];
   result.push(interviewer);
 }
-console.log(result)
+
 return result;
 }
 
