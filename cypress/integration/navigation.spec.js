@@ -7,8 +7,7 @@ describe("Navigation", () => {
     
     cy.contains("li","Tuesday")
     .click()
-
-    .should("have.css", "day-list__item--selected ");
+    cy.get('li').should('have.class', "day-list__item--selected")
   });
 
 
